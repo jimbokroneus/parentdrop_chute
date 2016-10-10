@@ -3,7 +3,7 @@
 # Runs a WiFi access point with content filtering and configurable blocking.
 
 # Specify the base image.
-FROM ubuntu:14.04
+FROM paradrop/workshop
 
 # Install dependencies.  You can add additional packages here following the example.
 RUN apt-get update && apt-get install -y \
