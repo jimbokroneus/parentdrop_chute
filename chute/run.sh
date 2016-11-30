@@ -14,5 +14,8 @@ while true; do
     sleep 5
 done
 
+# Execute the code required for dansguardian application
+python /user/local/bin/parser/parser.sh
+
 # If execution reaches this point, the chute will stop running.
 exit 0
