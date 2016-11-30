@@ -11,7 +11,7 @@ service privoxy force-reload
 service dansguardian start
 
 while true; do
-    sleep 300
+    sleep 5
 done
 
 # If execution reaches this point, the chute will stop running.

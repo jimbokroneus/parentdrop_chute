@@ -1,0 +1,3 @@
+#restart dansguardian
+dansguardian -r 
+
