@@ -54,7 +54,7 @@ def execute_json(json_rule_id, json_timestamp, json_enabled, json_start_time, js
      os.system(bashCommand)
   
   #restart dansguardian
-  logging.info('Restarting dansguardian for it to effect')
+  logging.info('Restarting dansguardian for it to take effect')
   bashCommand = "/bin/bash /usr/local/bin/parser/script_restart.sh"
   os.system(bashCommand)
     
@@ -151,4 +151,5 @@ if __name__ == '__main__':
    parse_json(json_data[data])
 
   work_duration = time.clock() - start
+  logging.info('About to temporarily sleep')
   time.sleep(polling_interval - work_duration)
