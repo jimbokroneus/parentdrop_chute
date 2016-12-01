@@ -38,26 +38,27 @@ def execute_json(json_rule_id, json_timestamp, json_enabled, json_start_time, js
    logging.info('Rule present in the KV Store')
    if json_enabled == "true" :
     logging.info('Rule enabled - add rule to the blacklist')
-    bashCommand = "/bin/bash script_add.sh \""+p1+"\""
+    bashCommand = "/bin/bash /usr/local/bin/parser/script_add.sh \""+p1+"\""
     os.system(bashCommand)
     for i in kvstore[json_rule_id]:
      p2=str(i.strip("\n"))
-     bashCommand = "/bin/bash script_add.sh \""+p2+"\""
+     bashCommand = "/bin/bash /usr/local/bin/parser/script_add.sh \""+p2+"\""
      os.system(bashCommand)
    else:
     logging.info('Rule disabled - remove rule from the blacklist')
-    bashCommand = "/bin/bash script_remove.sh \""+p1+"\""
+    bashCommand = "/bin/bash /usr/local/bin/parser/script_remove.sh \""+p1+"\""
     os.system(bashCommand)
     for i in kvstore[json_rule_id]:
      p2=str(i.strip("\n"))
-     bashCommand = "/bin/bash script_remove.sh \""+p2+"\""
+     bashCommand = "/bin/bash /usr/local/bin/parser/script_remove.sh \""+p2+"\""
      os.system(bashCommand)
   
   #restart dansguardian
   logging.info('Restarting dansguardian for it to effect')
-  bashCommand = "/bin/bash script_restart.sh"
+  bashCommand = "/bin/bash /usr/local/bin/parser/script_restart.sh"
   os.system(bashCommand)
-
+    
+ 
 #function to parse the json contents
 def parse_json(data):
  #add intimation to the log
@@ -116,7 +117,7 @@ kvstore = defaultdict(list) # kv store for rule id - function pairing
 #main utility
 if __name__ == '__main__':
  #initialize logging
- logging.basicConfig(filename='debug.log', level=logging.DEBUG)
+ logging.basicConfig(filename='debug.log', level=logging.DEBUG, format='%(asctime)s %(message)s')
 
  #initialization phase
  USER_ID = 'Ox8rSCFHZJeplEOyfbvQDTl7zVi1' #to do --> obtain from REST API
@@ -128,7 +129,7 @@ if __name__ == '__main__':
  running=1
  
  #store hard-coded values of IDs, rules from a file to a k,v store. Note: all entries in a file are unique
- myfile = open('BlockSiteList.txt', 'r')
+ myfile = open('/usr/local/bin/parser/BlockSiteList.txt', 'r')
  try:
   for line in myfile:
    rule_id, rule = line.split(" ")
