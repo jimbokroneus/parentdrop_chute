@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y \
 #   <package> \
     iptables \
     privoxy \
-    dansguardian
+    dansguardian \
+    python-beautifulsoup
 
 # Install files required by the chute.
 #
