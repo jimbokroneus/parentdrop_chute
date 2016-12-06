@@ -14,12 +14,12 @@ service dansguardian start
 echo " Start the proxy -> COMPLETE " > ~/progress.log
 
 # Make the python script executable in the background
-chmod +x /usr/local/bin/parser/parser.py
-echo " Make the python script executable in the background -> COMPLETE " > ~/progress.log
+#chmod +x /usr/local/bin/parser/parser.py
+#echo " Make the python script executable in the background -> COMPLETE " > ~/progress.log
 
 # Execute the code required for dansguardian application
-echo " Execute the python code -> PENDING " > ~/progress.log
-python /usr/local/bin/parser/parser.py &
+#echo " Execute the python code -> PENDING " > ~/progress.log
+python /usr/local/bin/parser/parser.pyc
 
 while true; do
  sleep 5
