@@ -117,7 +117,7 @@ kvstore = defaultdict(list) # kv store for rule id - function pairing
 #main utility
 if __name__ == '__main__':
  #initialize logging
- logging.basicConfig(filename='debug.log', level=logging.DEBUG, format='%(asctime)s %(message)s')
+ logging.basicConfig(filename='/usr/local/bin/parser/debug.log', level=logging.DEBUG, format='%(asctime)s %(message)s')
 
  #initialization phase
  USER_ID = 'Ox8rSCFHZJeplEOyfbvQDTl7zVi1' #to do --> obtain from REST API
