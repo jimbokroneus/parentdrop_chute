@@ -162,7 +162,7 @@ def init_kvstore():
 
 #global variables
 kvstore = defaultdict(list) # kv store for rule id - function pairing
-DEST_PATH='.'
+DEST_PATH='/usr/local/bin/parser'
 
 #main utility
 if __name__ == '__main__':
