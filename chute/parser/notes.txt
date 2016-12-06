@@ -1,5 +1,0 @@
-1. https://github.com/ozgur/python-firebase/blob/master/firebase/firebase.py
-2. check out dansguardian --> https://wiki.archlinux.org/index.php/DansGuardian#Blacklists
-3. http://stackoverflow.com/questions/18742657/execute-shell-script-from-python-with-variable
-4. Add bannedsitelist='/etc/dansguardian/lists/bannedsitelist'
-5. http://stackoverflow.com/questions/36389753/firebase-user-authentication-in-python
