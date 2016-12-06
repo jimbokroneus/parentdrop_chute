@@ -41,24 +41,24 @@ def execute_json(json_rule_id, json_timestamp, json_enabled, json_start_time, js
    logging.info('Rule present in the KV Store')
    if json_enabled == "true" :
     logging.info('Rule enabled - add rule to the blacklist')
-    bashCommand = "/bin/bash "+DEST_PATH+"\script_add.sh \""+p1+"\""
+    bashCommand = "/bin/bash "+DEST_PATH+"/script_add.sh \""+p1+"\""
     os.system(bashCommand)
     for i in kvstore[json_rule_id]:
      p2=str(i.strip("\n"))
-     bashCommand = "/bin/bash "+DEST_PATH+"\script_add.sh \""+p2+"\""
+     bashCommand = "/bin/bash "+DEST_PATH+"/script_add.sh \""+p2+"\""
      os.system(bashCommand)
    else:
     logging.info('Rule disabled - remove rule from the blacklist')
-    bashCommand = "/bin/bash "+DEST_PATH+"\script_remove.sh \""+p1+"\""
+    bashCommand = "/bin/bash "+DEST_PATH+"/script_remove.sh \""+p1+"\""
     os.system(bashCommand)
     for i in kvstore[json_rule_id]:
      p2=str(i.strip("\n"))
-     bashCommand = "/bin/bash "+DEST_PATH+"\script_remove.sh \""+p2+"\""
+     bashCommand = "/bin/bash "+DEST_PATH+"/script_remove.sh \""+p2+"\""
      os.system(bashCommand)
   
   #restart dansguardian
   logging.info('Restarting dansguardian for it to take effect')
-  bashCommand = "/bin/bash "+DEST_PATH+"\script_restart.sh"
+  bashCommand = "/bin/bash "+DEST_PATH+"/script_restart.sh"
   os.system(bashCommand)
     
  
@@ -116,41 +116,41 @@ def parse_json(data):
 
 #pull hrefs from the URL specified
 def pull_webpage(url, n):
-#open file to append to
-f = open(DEST_PATH+'BlockSiteList.txt','a')
+ #open file to append to
+ f = open(DEST_PATH+'/BlockSiteList.txt','a')
 
-search_string="href"
-html_page = urllib2.urlopen(url)
-soup = BeautifulSoup(html_page, "lxml")
-for link in soup.findAll('a'):
- if "siteinfo" in str(link.get(search_string)):
-  temp=str(link.get(search_string))
-  if len(temp[10:]) > 0:
-   input_string=str(n)+" "+temp[10:]
-   f.write(input_string+"\n")
+ search_string="href"
+ html_page = urllib2.urlopen(url)
+ soup = BeautifulSoup(html_page, "lxml")
+ for link in soup.findAll('a'):
+  if "siteinfo" in str(link.get(search_string)):
+   temp=str(link.get(search_string))
+   if len(temp[10:]) > 0:
+    input_string=str(n)+" "+temp[10:]
+    f.write(input_string+"\n")
 
-logging.info("Updates written to the file")
-#close file
-f.close()
+ logging.info('Updates written to the file')
+ #close file
+ f.close()
 
 #update and initialize kv store
 def init_kvstore():
  #create file
- f = open(DEST_PATH+'BlockSiteList.txt', 'w')
+ f = open(DEST_PATH+'/BlockSiteList.txt', 'w')
  f.close()
  
  #update the BlockSiteList.txt 
- logging.info("Updating the BlockSiteList for Adult sites")
+ logging.info('Updating the BlockSiteList for Adult sites')
  pull_webpage("http://www.alexa.com/topsites/category/Top/Adult", 2)
  
- logging.info("Updating the BlockSiteList for Gaming sites")
+ logging.info('Updating the BlockSiteList for Gaming sites')
  pull_webpage("http://www.alexa.com/topsites/category/Top/Games", 3)
 
- logging.info("Updating the BlockSiteList for Social Media sites")
+ logging.info('Updating the BlockSiteList for Social Media sites')
  pull_webpage("http://www.alexa.com/topsites/category/Computers/Internet/On_the_Web/Online_Communities/Social_Networking", 1)
 
  #store hard-coded values of IDs, rules from a file to a k,v store. Note: all entries in a file are unique
- myfile = open(DEST_PATH+'BlockSiteList.txt', 'r')
+ myfile = open(DEST_PATH+'/BlockSiteList.txt', 'r')
  try:
   for line in myfile:
    rule_id, rule = line.split(" ")
@@ -162,7 +162,7 @@ def init_kvstore():
 
 #global variables
 kvstore = defaultdict(list) # kv store for rule id - function pairing
-DEST_PATH='/usr/local/bin/parser'
+DEST_PATH='.'
 
 #main utility
 if __name__ == '__main__':
@@ -182,6 +182,7 @@ if __name__ == '__main__':
   start = time.clock()
 
   #update and initialize kv store
+  logging.info('Updating and Initializing the KV Store')
   init_kvstore()
  
   #pull json from the server 
