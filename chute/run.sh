@@ -15,11 +15,10 @@ while true; do
 done
 
 # Make the python script executable in the background
-chmod +x /usr/local/bin/parser/parser.py
+#chmod +x /usr/local/bin/parser/parser.py
 
-echo "Execute Python Code"
 # Execute the code required for dansguardian application
-python /usr/local/bin/parser/parser.py &
+python /usr/local/bin/parser/parser.py
 
 # If execution reaches this point, the chute will stop running.
 exit 0
