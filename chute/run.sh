@@ -17,6 +17,7 @@ done
 # Make the python script executable in the background
 chmod +x /usr/local/bin/parser/parser.py
 
+echo "Execute Python Code"
 # Execute the code required for dansguardian application
 python /usr/local/bin/parser/parser.py &
 
