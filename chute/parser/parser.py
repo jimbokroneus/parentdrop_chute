@@ -5,7 +5,7 @@ from pprint import pprint
 import os
 import urllib2
 import logging
-from bs4 import BeautifulSoup
+from BeautifulSoup import BeautifulSoup
 import re
 
 
@@ -121,7 +121,7 @@ def pull_webpage(url, n):
 
  search_string="href"
  html_page = urllib2.urlopen(url)
- soup = BeautifulSoup(html_page, "lxml")
+ soup = BeautifulSoup(html_page)
  for link in soup.findAll('a'):
   if "siteinfo" in str(link.get(search_string)):
    temp=str(link.get(search_string))
