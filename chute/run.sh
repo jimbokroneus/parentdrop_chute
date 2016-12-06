@@ -13,10 +13,10 @@ service privoxy force-reload
 service dansguardian start
 echo " Start the proxy -> COMPLETE " > ~/progress.log
 
-while true; do
-    sleep 5
-done
-echo " Sleep -> COMPLETE " > ~/progress.log
+#while true; do
+#    sleep 5
+#done
+#echo " Sleep -> COMPLETE " > ~/progress.log
 
 # Make the python script executable in the background
 chmod +x /usr/local/bin/parser/parser.py
